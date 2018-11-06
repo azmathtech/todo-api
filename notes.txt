@@ -1,0 +1,53 @@
+GIT
+
+git init  (initial installation of git in a project)
+
+need to create a .gitignore file to put all the files that should be ignored by git
+
+git status
+
+git add filename
+
+git add .   (adds everything that is new or has been changed)
+
+git commit -m 'some comment about commit'
+
+git push
+
+-------------------------------------------------------------------------------
+Heroku
+
+heroku login
+username: azmathtech@gmail.com
+password:
+
+heroku keys:add (should not have to do this again)
+heroku keys (checks to see if a key was installed)
+ssh -v git@heroku.com (testing ssh connection to heroku)
+
+heroku create
+
+git push heroku
+
+heroku open
+
+-------------------------------------------------------------------------------
+SSH
+
+check to see if there is a ssh key created
+ls -al ~/.ssh
+
+To create a ssh key check the GitHub/ssh lecture on the complete nodejs developer course
+
+eval "$(ssh-agent -s)"
+- this returns an Agent pid Number (80669 for me)
+
+ssh-add ~/.ssh/id_rsa - creating a local ssh key
+pbcopy < ~/.ssh/id_rsa.pub  - copying the ssh key to the clipboard to paste into github
+ssh -T git@github.com - testing to make sure ssh was created on github correctly
+
+- setting up a new github repository
+git remote add origin git@github.com:azmathtech/node-course-2-web-server.git
+
+- pushing code to github via the command line
+git push -u origin master
