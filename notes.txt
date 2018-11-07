@@ -40,6 +40,8 @@ example:  heroku addons:create mongolab:sandbox
 - access heroku configeration variables
 heroku config
 
+-log files for heroku app
+heroku logs
 
 -------------------------------------------------------------------------------
 SSH
