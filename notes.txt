@@ -31,6 +31,16 @@ git push heroku
 
 heroku open
 
+
+-to install an addon
+create a project and then run the below
+heroku addons:create nameofaddon
+example:  heroku addons:create mongolab:sandbox
+
+- access heroku configeration variables
+heroku config
+
+
 -------------------------------------------------------------------------------
 SSH
 
