@@ -145,11 +145,13 @@ app.post('/users', (req, res) => {
   console.log(user);
 });
 
+//authenticate is middleware used to see if a user is authenticated
 app.get('/users/me', authenticate, (req, res) => {
   res.send(req.user);
 });
 
 //used to test to see if a user is validated (pre-refactor)
+//the refactor moved this code into a middleware method
 // app.get('/users/me', authenticate, (req, res) => {
 //   var token = req.header('x-auth');
 //
