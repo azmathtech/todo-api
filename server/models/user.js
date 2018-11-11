@@ -82,6 +82,7 @@ UserSchema.statics.findByToken = function(token) {
   });
 };
 
+//model method to find a user credentials
 UserSchema.statics.findByCredentials = function(email, password) {
   var User = this;
 
