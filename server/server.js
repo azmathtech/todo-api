@@ -4,6 +4,7 @@ const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
 const { ObjectID } = require('mongodb');
+const bcrypt = require('bcryptjs');
 
 var { mongoose } = require('./db/mongoose');
 var { Todo } = require('./models/todo');
@@ -168,6 +169,46 @@ app.get('/users/me', authenticate, (req, res) => {
 //       res.status(401).send();
 //     });
 // });
+
+//POST /users/login {email, password} - user login functionality
+//first atempt at route, refined below
+// app.post('/users/login', (req, res) => {
+//   var body = _.pick(req.body, ['email', 'password']);
+//   //var email = body.email;
+//   res.send(body); //to test that the post worked
+//   User.find({
+//     email: body.email
+//   })
+//     .then(users => {
+//       if (users[0].email === body.email) {
+//         console.log(body);
+//         console.log('Users', users);
+//         console.log(users[0].email);
+//         bcrypt.compare(body.password, users[0].password, (err, res) => {
+//           console.log(res);
+//           console.log(users[0].tokens[0].token);
+//         });
+//       }
+//     })
+//     .catch(e => console.log(e));
+// });
+
+app.post('/users/login', (req, res) => {
+  var body = _.pick(req.body, ['email', 'password']);
+
+  User.findByCredentials(body.email, body.password)
+    .then(user => {
+      console.log('Success!!');
+      //res.send(user);
+      return user.generateAuthToken().then(token => {
+        res.header('x-auth', token).send(user);
+      });
+    })
+    .catch(e => {
+      console.log('Bad request');
+      res.status(400).send();
+    });
+});
 
 app.listen(port, () => {
   console.log(`Started on port ${port}`);
