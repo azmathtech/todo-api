@@ -40,6 +40,16 @@ example:  heroku addons:create mongolab:sandbox
 - access heroku configeration variables
 heroku config
 
+- create heroku environment variables
+- in example below NAME is the env var name and then the value
+heroku config:set NAME=somevalueofvar
+
+- get the value of a variable
+heroku config:get NAME
+
+- to unset a variable
+heroku config:unset NAME
+
 -log files for heroku app
 heroku logs
 
