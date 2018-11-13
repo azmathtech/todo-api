@@ -50,6 +50,10 @@ heroku config:get NAME
 - to unset a variable
 heroku config:unset NAME
 
+- Accessing database info example
+heroku config:get MONGODB_URI
+mongodb://username:password@address:PORT/databaseName
+
 -log files for heroku app
 heroku logs
 
